@@ -1,5 +1,9 @@
 
-
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="activity in athleteactivities"  ng-click="loadActivity()">
+        {{ activity.name }}
+    </li>
+</ul>
 
 {{athleteactivities}}
 
