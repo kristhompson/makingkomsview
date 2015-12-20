@@ -12,7 +12,8 @@ komControllers.controller('AthleteCtrl', ['$scope', '$routeParams', '$http',
             method: 'GET',
             url: 'http://localhost:9000/athlete'
         }).then(function successCallback(response) {
-            console.log('worked', response)
+            console.log('worked', response);
+            $scope.athlete = response.data
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
@@ -21,19 +22,30 @@ komControllers.controller('AthleteCtrl', ['$scope', '$routeParams', '$http',
             // or server returns response with an error status.
         });
 
-        $scope.orderProp = 'age';
+        $scope.dynamicPopover = {
+            content: 'Hello, World!',
+            title: 'Title'
+        };
     }]);
 
 komControllers.controller('ActivitiesCtrl', ['$scope', '$routeParams', '$http',
     function($scope, $routeParams, $http) {
-        /*
-        $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data) {
-            $scope.phone = data;
-            $scope.mainImageUrl = data.images[0];
+        $http({
+            method: 'GET',
+            url: 'http://localhost:9000/athleteactivities'
+        }).then(function successCallback(response) {
+            console.log('worked', response);
+            $scope.athleteactivities = response.data
+            // this callback will be called asynchronously
+            // when the response is available
+        }, function errorCallback(response) {
+            console.log('failed', response)
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
         });
-
-        $scope.setImage = function(imageUrl) {
-            $scope.mainImageUrl = imageUrl;
+        $scope.dynamicPopover = {
+            content: 'Hello, World!',
+            title: 'Title'
         };
-        */
+
     }]);

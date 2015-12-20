@@ -1,7 +1,8 @@
 'use strict';
 var phonecatApp = angular.module('komApp', [
   'ngRoute',
-  'komControllers'
+  'komControllers',
+  'ui.bootstrap'
 ]);
 
 phonecatApp.config(['$httpProvider', function($httpProvider) {
@@ -18,7 +19,7 @@ phonecatApp.config(['$routeProvider',
       controller: 'AthleteCtrl'
     }).
     when('/activities', {
-      templateUrl: 'partials/phone-detail.html',
+      templateUrl: 'partials/activitiesList.html',
       controller: 'ActivitiesCtrl'
     }).
     otherwise({
