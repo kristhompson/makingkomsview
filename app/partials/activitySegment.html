@@ -1,2 +1,8 @@
-<h2>hello</h2>
-{{segment}}
+<h2>List of Segments</h2>
+
+<ul class="list-group">
+
+    <li class="list-group-item" ng-repeat="seg in segments"  ng-click="loadLeaderboard(seg.segment.id)" >
+        {{ seg.name }}aa
+    </li>
+</ul>

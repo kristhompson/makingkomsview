@@ -1,6 +1,8 @@
 
+List of Activities
 <ul class="list-group">
-    <li class="list-group-item" ng-repeat="activity in athleteactivities"  ng-click="loadActivity()">
+
+    <li class="list-group-item" ng-repeat="activity in athleteactivities"  ng-click="loadActivity(activity.id)">
         {{ activity.name }}
     </li>
 </ul>

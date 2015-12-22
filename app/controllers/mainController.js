@@ -33,7 +33,6 @@ komControllers.controller('ActivitiesCtrl', ['$scope', '$routeParams', '$http', 
 
         //$scope.location = $location;
         console.log($location)
-        //$scope.location.path('/dfdfdf')
         $http({
             method: 'GET',
             url: 'http://localhost:9000/athleteactivities'
@@ -52,22 +51,32 @@ komControllers.controller('ActivitiesCtrl', ['$scope', '$routeParams', '$http', 
             title: 'Title'
         };
 
-        $scope.loadActivity  = function($scope){
-            console.log("ROOOOOOOCCCCKK")
-            $location.path('/page1');
+        $scope.loadActivity  = function(activityId){
+            console.log("ROOOOOOOCCCCKK", activityId)
+            $location.path('/activitySegments/'+activityId);
+            //$location.path('/activitySegment');
         }
 
     }]);
 
+
+
+
+
 komControllers.controller('ActivitySegmentCtrl', ['$scope', '$routeParams', '$http',
+
+
+    //init function
     function($scope, $routeParams, $http) {
-        /*
+        console.log('in the activity segment controller', $routeParams.activityId)
+
         $http({
             method: 'GET',
-            url: 'http://localhost:9000/athleteactivities'
+            url: 'http://localhost:9000/activityDetails/'+ $routeParams.activityId
         }).then(function successCallback(response) {
-            console.log('worked', response);
-            $scope.athleteactivities = response.data
+            console.log('worked, got activity', response);
+            $scope.activityDetails = response.data
+            $scope.segments = response.data.segment_efforts
             // this callback will be called asynchronously
             // when the response is available
         }, function errorCallback(response) {
@@ -75,11 +84,32 @@ komControllers.controller('ActivitySegmentCtrl', ['$scope', '$routeParams', '$ht
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
+
+
+        $scope.loadLeaderboard  = function(segmentId){
+            console.log("SSEEEEGGGGG", segmentId)
+
+            $http({
+                method: 'GET',
+                url: 'http://localhost:9000/segmentLeaderboard/'+ segmentId
+            }).then(function successCallback(response) {
+                console.log('worked, got segment leaderboard', response);
+                $scope.segmentLeaderboard = response.data
+                // this callback will be called asynchronously
+                // when the response is available
+            }, function errorCallback(response) {
+                console.log('failed', response)
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+            });
+
+        }
+
         $scope.dynamicPopover = {
             content: 'Hello, World!',
             title: 'Title'
         };
-        */
+
         $scope.segment = 'yes'
 
     }]);

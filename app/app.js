@@ -22,7 +22,8 @@ phonecatApp.config(['$routeProvider',
       templateUrl: 'partials/activitiesList.html',
       controller: 'ActivitiesCtrl'
     }).
-    when('/activitySegment', {
+
+    when('/activitySegments/:activityId', {
       templateUrl: 'partials/activitySegment.html',
       controller: 'ActivitySegmentCtrl'
     }).
