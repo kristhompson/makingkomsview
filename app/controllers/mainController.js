@@ -63,11 +63,11 @@ komControllers.controller('ActivitiesCtrl', ['$scope', '$routeParams', '$http', 
 
 
 
-komControllers.controller('ActivitySegmentCtrl', ['$scope', '$routeParams', '$http',
+komControllers.controller('ActivitySegmentCtrl', ['$scope', '$routeParams', '$http', '$location',
 
 
     //init function
-    function($scope, $routeParams, $http) {
+    function($scope, $routeParams, $http, $location) {
         console.log('in the activity segment controller', $routeParams.activityId)
 
         $http({
@@ -89,19 +89,7 @@ komControllers.controller('ActivitySegmentCtrl', ['$scope', '$routeParams', '$ht
         $scope.loadLeaderboard  = function(segmentId){
             console.log("SSEEEEGGGGG", segmentId)
 
-            $http({
-                method: 'GET',
-                url: 'http://localhost:9000/segmentLeaderboard/'+ segmentId
-            }).then(function successCallback(response) {
-                console.log('worked, got segment leaderboard', response);
-                $scope.segmentLeaderboard = response.data
-                // this callback will be called asynchronously
-                // when the response is available
-            }, function errorCallback(response) {
-                console.log('failed', response)
-                // called asynchronously if an error occurs
-                // or server returns response with an error status.
-            });
+            $location.path('/segments/'+segmentId);
 
         }
 
@@ -111,5 +99,30 @@ komControllers.controller('ActivitySegmentCtrl', ['$scope', '$routeParams', '$ht
         };
 
         $scope.segment = 'yes'
+
+    }]);
+
+
+
+komControllers.controller('SegmentCtrl', ['$scope', '$routeParams', '$http', '$location',
+    function($scope, $routeParams, $http, $location) {
+
+        //$scope.location = $location;
+        console.log($location)
+        $http({
+            method: 'GET',
+            url: 'http://localhost:9000/segmentLeaderboard/'+ $routeParams.segmentId
+        }).then(function successCallback(response) {
+            console.log('worked, got segment leaderboard', response);
+            $scope.segmentLeaderboard = response.data
+            // this callback will be called asynchronously
+            // when the response is available
+        }, function errorCallback(response) {
+            console.log('failed', response)
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
+        });
+
+
 
     }]);

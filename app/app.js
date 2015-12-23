@@ -27,6 +27,10 @@ phonecatApp.config(['$routeProvider',
       templateUrl: 'partials/activitySegment.html',
       controller: 'ActivitySegmentCtrl'
     }).
+    when('/segments/:segmentId', {
+      templateUrl: 'partials/segmentLeaderboard.html',
+      controller: 'SegmentCtrl'
+    }).
     otherwise({
       redirectTo: '/athlete'
     });
