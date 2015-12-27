@@ -34,6 +34,6 @@ komApp.config(['$routeProvider',
       controller: 'SegmentCtrl'
     }).
     otherwise({
-      redirectTo: '/athlete'
+      redirectTo: '/activities'
     });
   }]);

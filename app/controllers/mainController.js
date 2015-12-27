@@ -113,7 +113,13 @@ komControllers.controller('SegmentCtrl', ['$scope', '$routeParams', '$http', '$l
     function($scope, $routeParams, $http, $location) {
 
         $scope.segmentId = $routeParams.segmentId;
-        $scope.following = JSON.parse($routeParams.following);
+
+        if($routeParams.following == undefined){
+            $scope.following = false
+        }else{
+            $scope.following = JSON.parse($routeParams.following);
+        }
+
         console.log('following is ',$scope.following)
 
 
@@ -126,11 +132,30 @@ komControllers.controller('SegmentCtrl', ['$scope', '$routeParams', '$http', '$l
             $scope.segmentLeaderboard = response.data
             // this callback will be called asynchronously
             // when the response is available
+
+
+            // inspect the top of the list and pull that athlete
+
+            console.log($scope.segmentLeaderboard.entries[0].athlete_id)
+            $http({
+                method: 'GET',
+                url: 'http://localhost:9000/athlete/'+$scope.segmentLeaderboard.entries[0].athlete_id
+            }).then(function successCallback(response) {
+                console.log('worked', response);
+                $scope.athlete = response.data
+
+            }, function errorCallback(response) {
+                console.log('failed', response)
+
+            });
+
         }, function errorCallback(response) {
             console.log('failed', response)
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
+
+
 
 
 

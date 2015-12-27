@@ -2,7 +2,18 @@
 <div class="container-fluid">
     <h2>Leaderboard</h2>
 
+    <img src="{{athlete.profile}}" class="img-responsive" alt="Responsive image">
 
+    <div class="row">
+        Name: {{athlete.firstname}} {{athlete.lastname}}
+
+    </div>
+    <div class="row">
+        City: {{athlete.city}} State: {{athlete.state}}
+    </div>
+    <div class="row">
+        Weight: {{athlete.weight}}
+    </div>
 
     <span ng-show="!following" >What just to see leaderboard for your followers?  <a ng-href="#/segments/{{segmentId}}?following=true">Try this</a></span>
 
@@ -14,6 +25,10 @@
             {{athlete.rank}} {{ athlete.athlete_name }}
         </li>
     </ul>
+
+    <button uib-popover="{{dynamicPopover.content}}" popover-title="{{dynamicPopover.title}}"
+            type="button" class="btn btn-default">Dynamic Popover</button>
+
 
 
 </div>
