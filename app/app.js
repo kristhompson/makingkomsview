@@ -1,17 +1,19 @@
 'use strict';
-var phonecatApp = angular.module('komApp', [
+var komApp = angular.module('komApp', [
   'ngRoute',
   'komControllers',
   'ui.bootstrap'
 ]);
 
-phonecatApp.config(['$httpProvider', function($httpProvider) {
+komApp.config(['$httpProvider', function($httpProvider) {
+
+  // needed for cors crap
   $httpProvider.defaults.useXDomain = true;
   delete $httpProvider.defaults.headers.common['X-Requested-With'];
 }
 ]);
 
-phonecatApp.config(['$routeProvider',
+komApp.config(['$routeProvider',
   function($routeProvider) {
     $routeProvider.
     when('/athlete', {

@@ -2,6 +2,12 @@
 <div class="container-fluid">
     <h2>Leaderboard</h2>
 
+
+
+    <span ng-show="!following" >What just to see leaderboard for your followers?  <a ng-href="#/segments/{{segmentId}}?following=true">Try this</a></span>
+
+    <span ng-show="following">See All Leaders?  <a ng-href="#/segments/{{segmentId}}?following=false">Try this</a></span>
+
     <ul class="list-group">
 
         <li class="list-group-item" ng-repeat="athlete in segmentLeaderboard.entries"  >
